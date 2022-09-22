@@ -1,0 +1,284 @@
+//class and objects
+
+class Toggle()
+{
+    fun SwitchOn()
+    {
+        println("Switch is turned ON!!")
+    }
+    fun SwitchOff()
+    {
+        println("Swicth is turned OFF!!")
+    }
+}
+fun main() 
+{
+    val obj=Toggle()
+    obj.SwitchOn()
+    obj.SwitchOff()
+}
+
+
+//constructors-
+
+//default constructor
+class Person()
+{
+    val name:String=""
+    val number:Int=0
+    
+}
+
+
+fun main() 
+{
+   val obj1=Person()
+   println(obj1.name)
+   println(obj1.number)
+}
+
+//primary constructor
+
+//we make object to give default values to properties 
+//val-var make them properties inside a constructor,hasboolean is a parameter so we have to initialize it
+
+class Person(val name:String,val number:Int,hasboolean:Boolean) 
+{
+    init
+    {
+        println("start")
+    }
+   val active=hasboolean //this
+    init
+    {
+        println("end")
+    }
+}
+
+
+fun main() 
+{
+   var obj=Person("Riya",123,true)  //giving default value to parameters of our primary constructor
+   println(obj.name)
+}
+
+//secondary constructor
+class Automobile(val name:String,val maxSeat:Int,val tyres:Int,val engineType:String)
+{
+    init{
+        println("$name is created")
+    }
+    init{
+        println("Let's start our journey")
+    }
+    
+    constructor(nameParam:String,engineParam:String):this(nameParam,4,5,engineParam)
+}
+fun main()
+{
+    var obj=Automobile("Car","Petrol")
+    var obj2=Automobile("Auto","CNG")
+}
+
+//inheritance- only single inheritance is possible
+
+fun main() 
+{
+  val obj=Child()
+  obj.Method1()
+  obj.Method2()
+}
+
+open class Parent
+{
+    val name:String=""
+    fun Method1()
+    {
+        println("I'm in parent class")
+    }
+}
+class Child:Parent()
+{
+    val name2:String=""
+    fun Method2()
+    {
+        println("I'm in child class")
+    }
+}
+
+//In Inheritance let's see whose constructor will get called first
+
+fun main() 
+{
+  val obj=Child()
+  
+}
+
+open class Parent
+{
+    init
+    {
+        println("Parent's constructor")
+    }
+    val name:String=""
+    fun Method1()
+    {
+        println("I'm in parent class")
+    }
+}
+class Child:Parent()
+{
+    init
+    {
+        println("Child's constructor")
+    }
+    val name2:String=""
+    fun Method2()
+    {
+        println("I'm in child class")
+    }
+}
+
+//overriding 
+fun main() 
+{
+  val obj=Child()
+  obj.Method1()
+  
+}
+
+open class Parent
+{
+     open val name:String=""
+     open fun Method1()
+    {
+        println("I'm in parent class")
+    }
+}
+class Child:Parent()
+{
+    override val name:String="Ritika"
+    override fun Method1()
+    {
+        println("I'm in child class")
+    }
+}
+
+//Super keyword-If we want to display method with the same name of parent as well as child class in overriding
+//overriding 
+fun main() 
+{
+  val obj=Child()
+  obj.Method1()  
+}
+
+open class Parent
+{
+     open val name:String=""
+     open fun Method1()
+    {
+        println("I'm in parent class")
+    }
+}
+class Child:Parent()
+{
+    override val name:String="Ritika"
+    override fun Method1()
+    {
+        super.Method1()
+        println("I'm in child class")
+    }
+}
+//then studied about access modifiers-public,internal,private,protected
+
+//22/09/2022
+/* How to define a function with lambda syntax.
+How to store functions in variables.
+How to pass functions as arguments to other functions.
+How to return functions from other functions.
+How to use nullable function types.
+How to make lambda expressions more concise.
+What a higher-order function is.
+How to use the repeat() function. */
+
+//Reference operator
+
+fun main() 
+{
+   var obj=::trick 
+}
+fun trick()
+{
+    println("Hi")
+}
+
+
+//Lambda expression to make it moe concise
+
+/*with lambda expression I can store functions directly in a variable 
+without using a function reference*/
+
+fun main() 
+{
+   val obj=Trick //storing a function in a variable,so now func will refer as a variable
+   obj()
+}
+
+var Trick={
+    println("I'm a lambda expression")
+}
+
+//Function as a datatype
+
+fun main() 
+{
+    //Trick() - can also do this in it
+    val obj=Trick //storing a function in a variable,so now func will refer as a variable
+   obj()
+    Treat()
+}
+var Trick={
+    println("I'm a Trick expression")
+}
+var Treat:()->Unit={
+	println("I'm a Treat expression")
+}
+
+//Using function as a return type and trickOrTreat() function that accepts an isTrick parameter of type Boolean.
+fun main() 
+{
+    val obj1=TrickOrTreat(true)
+    val obj2=TrickOrTreat(true)
+    val obj3=TrickOrTreat(false)
+
+    obj1()
+    obj2()
+    obj3()
+}
+
+fun TrickOrTreat(isTrick:Boolean):()->Unit={ 
+    if(isTrick){
+         Trick()
+    }
+    else
+    {
+         Treat()
+    }
+}
+val Trick={
+    println("I'm a Trick function")
+}
+val Treat={
+    println("I'm a Treat function")
+}
+
+//repeat function-does a work of loops when we pass a func as a parameter to another func
+
+fun main() {
+    val treatFunction = trickOrTreat(false) { "$it quarters" }
+    val trickFunction = trickOrTreat(true, null)
+    repeat(4) {
+        treatFunction()
+    }
+    trickFunction()
+}
