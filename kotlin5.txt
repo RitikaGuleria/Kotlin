@@ -1,0 +1,133 @@
+//1-GENERICS
+
+class Questions<T>(val QuestionText:String,val answer:T,val difficulty:String)
+
+fun main() 
+{
+    val obj1=Questions<String>("Are You Okay?","Yes! definitely","Easy")
+    val obj2=Questions<Boolean>("Are You Okay?",false,"Medium")
+    val obj3=Questions<Int>("2+2=?",4,"Easy")
+    
+}
+
+//2-ENUM CLASS
+
+enum class Difficult(
+	EASY,MEDIUM,HARD
+)
+
+class Questions<T>(
+    val QuestionText:String,
+    val answer:T,
+    val difficulty:Difficult
+)
+
+fun main() 
+{
+    val obj1=Questions<String>("Are You Okay?","Yes! definitely",Difficult.EASY)
+    val obj2=Questions<Boolean>("Are You Okay?",false,Difficult.MEDIUM)
+    val obj3=Questions<Int>("2+2=?",4,Difficult.HARD)
+    
+}
+
+//3-DATA CLASS
+​
+data class Questions<T>(
+    val QuestionText:String,
+    val answer:T,
+    val difficulty:String
+)
+​
+fun main() 
+{
+    val obj1=Questions<String>("Are You Okay?","Yes! definitely","easy")
+    val obj2=Questions<Boolean>("Are You Okay?",false,"medium")
+    val obj3=Questions<Int>("2+2=?",4,"hard")
+    println(obj1.toString())
+}
+OUTPUT-
+Questions(QuestionText=Are You Okay?, answer=Yes! definitely, difficulty=easy)
+Target platform: JVMRunning on kotlin v. 1.7.10
+
+//SINGLETON OBJECT
+
+object Progress
+{
+    var total:Int=10
+    var marks:Int=3
+}
+fun main()
+{
+    println("${Progress.marks} out of ${Progress.total} answered")
+}
+
+//COMPANION OBJECT
+
+class Quiz
+{
+//     val question1 = Question<String>("Quoth the raven ___", "nevermore", Difficulty.MEDIUM)
+//     val question2 = Question<Boolean>("The sky is green. True or false", false, Difficulty.EASY)
+//     val question3 = Question<Int>("How many days are there between full moons?", 28, Difficulty.HARD)
+    
+    companion object StudentProgress
+    {
+        var total:Int=10
+        var marks:Int=3
+    }
+}
+fun main()
+{
+    println("${Quiz.marks} out of ${Quiz.total} answered")
+}
+
+
+//SCOPE FUNCTIONS
+
+/*Scope functions are higher-order functions that allow you to access properties and methods of an object without 
+referring to the object's name. These are called scope functions because the body of the function passed in takes 
+on the scope of the object that the scope function is called with. */
+
+
+//-LET FUNCTION-The let() function allows you to refer to an object in a lambda expression using the identifier 
+//it, instead of the object's actual name.
+
+fun printQuiz() {
+    println(question1.questionText)
+    println(question1.answer)
+    println(question1.difficulty)
+    println()
+    println(question2.questionText)
+    println(question2.answer)
+    println(question2.difficulty)
+    println()
+    println(question3.questionText)
+    println(question3.answer)
+    println(question3.difficulty)
+    println()
+}
+//replace it with-
+fun printQuiz() {
+    question1.let {
+        println(it.questionText)
+        println(it.answer)
+        println(it.difficulty)
+    }
+    println()
+    question2.let {
+        println(it.questionText)
+        println(it.answer)
+        println(it.difficulty)
+    }
+    println()
+    question3.let {
+        println(it.questionText)
+        println(it.answer)
+        println(it.difficulty)
+    }
+    println()
+}
+
+//apply function
+
+
+//ADD AN EXTENSION PROPERTY(EXTEND CLASSES) -pending a bit
