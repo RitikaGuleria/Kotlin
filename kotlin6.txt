@@ -1,0 +1,83 @@
+//ARRAY
+
+fun main()
+{
+    val rockPlanets = arrayOf<String>("Mercury", "Venus", "Earth", "Mars")
+    val gasPlanets = arrayOf("Jupiter", "Saturn", "Uranus", "Neptune") //type inference
+    val solarSystem = rockPlanets + gasPlanets
+    println(solarSystem[0])
+    println(solarSystem[1])
+    println(solarSystem[2])
+    println(solarSystem[3])
+    println(solarSystem[4])
+    println(solarSystem[5])
+    println(solarSystem[6])
+    println(solarSystem[7])
+}
+
+//LIST
+
+fun main() 
+{
+//   val planets = listOf("Mercury", "Venus", "Earth", "Mars","Jupiter", "Saturn", "Uranus", "Neptune") //type inference
+
+     val planets = mutableListOf("Mercury", "Venus", "Earth", "Mars","Jupiter", "Saturn", "Uranus", "Neptune") //type inference
+     println(planets.size)
+     println(planets[2])
+     println(planets.get(2))
+     println(planets.indexOf("Earth"))
+     println(planets.indexOf("Pluto"))
+     
+     //addition
+     planets.add("Pluto")
+     planets.add(3,"Theia")
+     
+     for(planet in planets)
+    {
+        println(planet)
+    }
+    println("--------------")
+    //updation
+    planets[3]="Future moon"
+    for(planet in planets)
+    {
+        println(planet)
+    }
+    println("--------------")
+    //Remove 
+    planets.removeAt(9)
+    planets.remove("Mercury")
+    for(planet in planets)
+    {
+        println(planet)
+    }
+    println("--------------")
+    println(planets.contains("Pluto"))
+    println("pluto" in planets)
+}
+
+//set-mutable set of
+fun main()
+{
+    val planets = mutableSetOf("Mercury", "Venus", "Earth", "Mars","Jupiter", "Saturn", "Uranus", "Neptune")
+    println(planets.size)
+    planets.add("Pluto")
+    println(planets.size)
+    planets.remove("Pluto")
+    println(planets.size)
+}
+
+//set-mutable set of
+fun main()
+{
+    val planets = mutableMapOf(
+    	"Mercury" to 0,
+        "Earth" to 1,
+        "Mars" to 2,
+        "Jupiter" to 3
+    )
+    planets["pluto"]=4
+    println(planets.size)
+    planets.remove("pluto")
+    println(planets.size)
+}
