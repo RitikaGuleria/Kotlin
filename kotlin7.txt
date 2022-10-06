@@ -1,0 +1,172 @@
+//HigherOrder Functions and lambdas
+
+//For each with higher order function
+
+class Friend(
+    val name:String,
+    val city:String,
+    val closeFriend:Boolean
+)
+
+val friends=listOf(
+	Friend(name="Abhishek",city="Muzaffarnagar",closeFriend=true),
+    Friend(name="Mayank",city="Bareilly",closeFriend=true),
+    Friend(name="Vanshika",city="Sujanpur",closeFriend=true),
+    Friend(name="Amrit vani",city="Pathankot",closeFriend=true)
+)
+
+fun main()
+{
+   friends.forEach{
+       println("List: ${it.name}, ${it.city}")
+   }
+}
+
+//map(convert collection of Friend type into string type) with higher order function
+
+class Friend(
+    val name:String,
+    val city:String,
+    val closeFriend:Boolean,
+    val phoneNo:Int
+)
+
+val friends=listOf(
+	Friend(name="Abhishek",city="Muzaffarnagar",closeFriend=true,12),
+    Friend(name="Mayank",city="Bareilly",closeFriend=true,34),
+    Friend(name="Vanshika",city="Sujanpur",closeFriend=true,56),
+    Friend(name="Amrit vani",city="Pathankot",closeFriend=true,78)
+)
+
+fun main()
+{
+    val ans=friends.map{
+        "${it.name}-$${it.phoneNo}"
+    }
+    println("-------------------")
+    ans.forEach{
+        println(it)
+    }
+   
+}
+
+//Filter function
+
+class Friend(
+    val name:String,
+    val city:String,
+    val closeFriend:Boolean,
+    val phoneNo:Int
+)
+
+val friends=listOf(
+	Friend(name="Abhishek",city="Muzaffarnagar",closeFriend=true,12),
+    Friend(name="Mayank",city="Bareilly",closeFriend=false,34),
+    Friend(name="Vanshika",city="Sujanpur",closeFriend=false,56),
+    Friend(name="Amrit vani",city="Pathankot",closeFriend=false,78)
+)
+
+fun main()
+{
+    val ans=friends.filter{
+        it.closeFriend
+    }
+    println("close friends are: ")
+    ans.forEach{
+        println("${it.name}")
+    } 
+}
+
+//group by function
+
+class Friend(
+    val name:String,
+    val city:String,
+    val closeFriend:Boolean,
+    val phoneNo:Int
+)
+
+val friends=listOf(
+	Friend(name="Abhishek",city="Muzaffarnagar",closeFriend=true,12),
+    Friend(name="Mayank",city="Bareilly",closeFriend=false,34),
+    Friend(name="Vanshika",city="Sujanpur",closeFriend=false,56),
+    Friend(name="Amrit vani",city="Pathankot",closeFriend=false,78)
+)
+
+fun main()
+{
+    val ans=friends.groupBy{
+        it.closeFriend
+    }
+    val moreClose=ans[true]?: listOf() //emptyList() and partition() functions can also be used
+    val lessClose=ans[false]?: listOf()
+    
+    println("-----true------")
+    moreClose.forEach{
+        println("${it.name}-${it.closeFriend}")
+    }
+    println("-----false------")
+    lessClose.forEach{
+        println("${it.name}-${it.closeFriend}")
+    }
+}
+
+//fold function or reduce function
+
+class Friend(
+    val name:String,
+    val city:String,
+    val closeFriend:Boolean,
+    val sum:Int
+)
+
+val friends=listOf(
+	Friend(name="Abhishek",city="Muzaffarnagar",closeFriend=true,12),
+    Friend(name="Mayank",city="Bareilly",closeFriend=false,34),
+    Friend(name="Vanshika",city="Sujanpur",closeFriend=false,56),
+    Friend(name="Amrit vani",city="Pathankot",closeFriend=false,78)
+)
+
+fun main()
+{
+    val ans=friends.fold(0.0){
+        total,totalSum->total+totalSum.sum
+    }
+    println("Total Sum: ${ans}")
+}
+
+// Kotlin collections also have a sum() function for numeric types, as well as a higher-order sumOf() function.
+
+// sort or sortedBy()-When we first learned about collections, we learned that the sort() function could be used to sort the elements. However, this won't work on a collection of Cookie objects. The Cookie class has several properties and Kotlin won't know which properties (name, price, etc.) you want to sort by.
+
+class Friend(
+    val name:String,
+    val city:String,
+    val closeFriend:Boolean,
+    val sum:Int
+)
+
+val friends=listOf(
+	Friend(name="Abhishek",city="Muzaffarnagar",closeFriend=true,12),
+    Friend(name="Mayank",city="Bareilly",closeFriend=false,34),
+    Friend(name="Vanshika",city="Sujanpur",closeFriend=false,56),
+    Friend(name="Amrit vani",city="Pathankot",closeFriend=false,78)
+)
+
+fun main()
+{
+    val elements=friends.sortedBy{
+        it.name
+    }
+    elements.forEach{
+        println(it.name)
+    }
+}
+/*
+You can loop over each element in a collection using forEach().
+Expressions can be inserted into strings.
+map() is used to format the items in a collection, often as a collection of another data type.
+filter() can generate a subset of a collection.
+groupBy() splits a collection based on a function return value.
+fold() turns a collection into a single value.
+sortedBy() is used to sort a collection by a specified property. */
