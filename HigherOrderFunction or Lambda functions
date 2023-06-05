@@ -1,0 +1,43 @@
+//higher order functions
+
+fun RollDice1(range:IntRange, times:Int, callback:()->Unit)
+{
+    for(i in 0 until times)
+    {
+        val result=range.random()
+        callback(result)
+    }
+}
+fun RollDice2(callback:(result:Int)->Unit):String
+{
+    thread{
+        Thread.sleep(2000)
+        callback(2)
+    }
+    return "Dice Rolled"
+}
+fun RollDice3(callback:((result:Int)->Unit)?=null):String
+{
+    thread{
+        Thread.sleep(2000)
+        callback?.invoke(2)
+    }
+    return "Dice Rolled"
+}
+
+fun main() 
+{
+    //calling first function
+    RollDice1(1..6,4,{ result->
+        println(result)
+    })
+    
+    //calling second function
+    val result=RollDice2{
+        println(it)
+    }
+    println(result)
+    
+    //calling last with null value below also call with above.
+    val result=RollDice2()
+}
