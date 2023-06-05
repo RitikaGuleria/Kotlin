@@ -1,0 +1,31 @@
+//Singletone object or companion object
+
+//1) Easy way to define singleon pattern in kotlin
+object Manager{
+    init{
+        println("Manager object initiliazed")
+    }
+}
+fun main()
+{
+    println(Manager)
+}
+
+//2) aother way to define singleton like other programming language but it contains boilerplate as well
+
+class Manager private constructor{
+    companion object{
+        private var instance : Manager?=null
+        fun getInstance()=synchronized(this){ //operator fun invoke()=fun getInstance()
+            if(instance==null)
+             instance=Manager()
+            instance
+        }
+    }
+}
+fun main()
+{
+    println(Manager.getInstance())
+    println(Manager)
+    println(Manager.invoke())
+}
